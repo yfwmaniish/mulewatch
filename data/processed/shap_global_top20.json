@@ -1,0 +1,142 @@
+[
+  {
+    "rank": 1,
+    "feature": "F3898",
+    "mean_abs_shap": 0.8239441048977749,
+    "mean_signed_shap": -0.09909519413905975,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 2,
+    "feature": "F3914",
+    "mean_abs_shap": 0.35159823622126685,
+    "mean_signed_shap": 0.11137538660735284,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 3,
+    "feature": "F3484",
+    "mean_abs_shap": 0.26836717327065557,
+    "mean_signed_shap": 0.006221702305024604,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 4,
+    "feature": "F2391",
+    "mean_abs_shap": 0.24478110405164824,
+    "mean_signed_shap": -0.0031253717264878565,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 5,
+    "feature": "F3908",
+    "mean_abs_shap": 0.1955027068519564,
+    "mean_signed_shap": 0.01596221220885401,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 6,
+    "feature": "F937",
+    "mean_abs_shap": 0.19166738072792808,
+    "mean_signed_shap": 3.8361070934010856e-05,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 7,
+    "feature": "F154",
+    "mean_abs_shap": 0.18804245070433837,
+    "mean_signed_shap": 0.004802367280777214,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 8,
+    "feature": "F3700",
+    "mean_abs_shap": 0.17537315334290263,
+    "mean_signed_shap": -0.016732618175123944,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 9,
+    "feature": "F2382",
+    "mean_abs_shap": 0.15227367970222375,
+    "mean_signed_shap": -0.0042676626612884625,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 10,
+    "feature": "F1863",
+    "mean_abs_shap": 0.14335886111492235,
+    "mean_signed_shap": 0.002396691346102954,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 11,
+    "feature": "F2489",
+    "mean_abs_shap": 0.14249805195554371,
+    "mean_signed_shap": -0.02254204392721405,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 12,
+    "feature": "F2383",
+    "mean_abs_shap": 0.13734595876172936,
+    "mean_signed_shap": 0.001943177677677688,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 13,
+    "feature": "F3805",
+    "mean_abs_shap": 0.130972260995775,
+    "mean_signed_shap": -0.013505936049117914,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 14,
+    "feature": "F2032",
+    "mean_abs_shap": 0.12655752732163095,
+    "mean_signed_shap": 0.005606966266175705,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 15,
+    "feature": "F3825",
+    "mean_abs_shap": 0.12430570240279629,
+    "mean_signed_shap": 0.0032202432874188685,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 16,
+    "feature": "F471",
+    "mean_abs_shap": 0.11998683625193818,
+    "mean_signed_shap": 0.004066885958340538,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 17,
+    "feature": "F270",
+    "mean_abs_shap": 0.1115508966067444,
+    "mean_signed_shap": -0.008339463799760128,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 18,
+    "feature": "F3105",
+    "mean_abs_shap": 0.1016631374704088,
+    "mean_signed_shap": -0.0015420743434562568,
+    "direction": "low \u2192 mule"
+  },
+  {
+    "rank": 19,
+    "feature": "F2637",
+    "mean_abs_shap": 0.09737322653412891,
+    "mean_signed_shap": 0.0032891159264951592,
+    "direction": "high \u2192 mule"
+  },
+  {
+    "rank": 20,
+    "feature": "F53",
+    "mean_abs_shap": 0.09440945969452574,
+    "mean_signed_shap": 0.0035559978672003996,
+    "direction": "high \u2192 mule"
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "input": "DataSet.csv",
+  "raw_shape": [
+    9082,
+    3925
+  ],
+  "dropped_zero_variance": 359,
+  "dropped_high_null": 830,
+  "missing_threshold": 0.8,
+  "duplicate_groups": 434,
+  "dropped_duplicates": 484,
+  "identity_flags": [
+    {
+      "column": "F2230",
+      "category": "Dec25"
+    },
+    {
+      "column": "F2230",
+      "category": "Nov25"
+    },
+    {
+      "column": "F2230",
+      "category": "Sep25"
+    }
+  ],
+  "object_handling": {
+    "F3888": "date_to_epoch_days",
+    "F3889": "frequency_encoded (raw values kept in memory)",
+    "F3886": "frequency_encoded",
+    "F3890": "frequency_encoded",
+    "F3891": "frequency_encoded",
+    "F3892": "frequency_encoded",
+    "F3893": "frequency_encoded",
+    "F2230": "split_key_only (dropped from features; raw values kept in memory)"
+  },
+  "leakage_f2230_dropped": 1,
+  "leakage_target_flagged": 0,
+  "anomaly_rows": 680,
+  "anomaly_positives": 0,
+  "supervised_rows": 8402,
+  "supervised_positives": 81,
+  "splits": {
+    "train": {
+      "rows": 5881,
+      "positives": 57
+    },
+    "test": {
+      "rows": 2521,
+      "positives": 24
+    },
+    "anomaly": {
+      "rows": 680,
+      "positives": 0
+    }
+  },
+  "holdout_fraction": 0.3,
+  "final_feature_count": 2248
+}

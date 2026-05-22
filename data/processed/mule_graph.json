@@ -1,0 +1,1182 @@
+{
+  "meta": {
+    "method": "cosine similarity of top-20 SHAP feature vectors",
+    "top_n_features": 20,
+    "top_k_accounts": 50,
+    "edge_keep_frac": 0.1,
+    "min_similarity_floor": 0.3,
+    "applied_cutoff": 0.31664927032099616,
+    "n_nodes": 50,
+    "n_edges": 122,
+    "n_positive_nodes": 21,
+    "svg_width": 800,
+    "svg_height": 540,
+    "model_version": "c4a43cb2b9a69325",
+    "uncalibrated_model": "4b58c03bb34b52b6",
+    "caveat": "Edges = behavioral similarity, not money flow. Dataset has no counterparty data. Production deployment uses real transfer edges."
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "account_id": 9018,
+      "display_id": "MULE_AC_9018_FC8E",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 688.8195743471349,
+      "y": 372.7244483232889,
+      "degree": 7
+    },
+    {
+      "id": 1,
+      "account_id": 9071,
+      "display_id": "MULE_AC_9071_6789",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 550.5467639869162,
+      "y": 429.19646432001906,
+      "degree": 9
+    },
+    {
+      "id": 2,
+      "account_id": 9049,
+      "display_id": "MULE_AC_9049_EF81",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 501.54464780842903,
+      "y": 423.68734862328654,
+      "degree": 7
+    },
+    {
+      "id": 3,
+      "account_id": 9033,
+      "display_id": "MULE_AC_9033_0193",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 515.3317678250614,
+      "y": 431.1357175453416,
+      "degree": 7
+    },
+    {
+      "id": 4,
+      "account_id": 9061,
+      "display_id": "MULE_AC_9061_8387",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 516.2146576973417,
+      "y": 425.58062683776785,
+      "degree": 8
+    },
+    {
+      "id": 5,
+      "account_id": 9062,
+      "display_id": "MULE_AC_9062_8087",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 506.99197163344553,
+      "y": 419.09575280240216,
+      "degree": 8
+    },
+    {
+      "id": 6,
+      "account_id": 9079,
+      "display_id": "MULE_AC_9079_6F89",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 522.9182500408889,
+      "y": 408.8877734398216,
+      "degree": 11
+    },
+    {
+      "id": 7,
+      "account_id": 9032,
+      "display_id": "MULE_AC_9032_0293",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 604.4025500247399,
+      "y": 409.6529231808181,
+      "degree": 8
+    },
+    {
+      "id": 8,
+      "account_id": 9016,
+      "display_id": "MULE_AC_9016_EE8E",
+      "score": 1.0,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 535.7823179627801,
+      "y": 420.91501309648237,
+      "degree": 8
+    },
+    {
+      "id": 9,
+      "account_id": 9025,
+      "display_id": "MULE_AC_9025_FF90",
+      "score": 0.9339744706495672,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 732.786536611436,
+      "y": 60.0,
+      "degree": 0
+    },
+    {
+      "id": 10,
+      "account_id": 9029,
+      "display_id": "MULE_AC_9029_F390",
+      "score": 0.8893117586573542,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 740.0,
+      "y": 379.89339015449764,
+      "degree": 3
+    },
+    {
+      "id": 11,
+      "account_id": 9004,
+      "display_id": "MULE_AC_9004_6A8B",
+      "score": 0.8224604682830234,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 551.3880068710312,
+      "y": 384.2740306188886,
+      "degree": 1
+    },
+    {
+      "id": 12,
+      "account_id": 9009,
+      "display_id": "MULE_AC_9009_778B",
+      "score": 0.8,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 546.9255443522374,
+      "y": 419.4593474244762,
+      "degree": 11
+    },
+    {
+      "id": 13,
+      "account_id": 9005,
+      "display_id": "MULE_AC_9005_6B8B",
+      "score": 0.7483153446502747,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 573.6555991873723,
+      "y": 467.7964063486501,
+      "degree": 2
+    },
+    {
+      "id": 14,
+      "account_id": 9050,
+      "display_id": "MULE_AC_9050_FC84",
+      "score": 0.7428571428571428,
+      "band": "HIGH",
+      "is_positive": true,
+      "x": 710.5695746056024,
+      "y": 366.04957757816993,
+      "degree": 6
+    },
+    {
+      "id": 15,
+      "account_id": 9012,
+      "display_id": "MULE_AC_9012_F28E",
+      "score": 0.6672619047619048,
+      "band": "MEDIUM",
+      "is_positive": true,
+      "x": 509.6983440832087,
+      "y": 404.1358026375399,
+      "degree": 8
+    },
+    {
+      "id": 16,
+      "account_id": 9045,
+      "display_id": "MULE_AC_9045_FB81",
+      "score": 0.6452629265058651,
+      "band": "MEDIUM",
+      "is_positive": true,
+      "x": 646.3243452288465,
+      "y": 393.23544672570256,
+      "degree": 7
+    },
+    {
+      "id": 17,
+      "account_id": 9014,
+      "display_id": "MULE_AC_9014_F08E",
+      "score": 0.6018287096827707,
+      "band": "MEDIUM",
+      "is_positive": true,
+      "x": 599.9797294878408,
+      "y": 401.848937907113,
+      "degree": 5
+    },
+    {
+      "id": 18,
+      "account_id": 9043,
+      "display_id": "MULE_AC_9043_F981",
+      "score": 0.29593596059113303,
+      "band": "LOW",
+      "is_positive": true,
+      "x": 684.2358847677618,
+      "y": 360.2263505558749,
+      "degree": 6
+    },
+    {
+      "id": 19,
+      "account_id": 723,
+      "display_id": "MULE_AC_723_397F",
+      "score": 0.24617546559859918,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 588.5024834040973,
+      "y": 383.8280030832846,
+      "degree": 4
+    },
+    {
+      "id": 20,
+      "account_id": 823,
+      "display_id": "MULE_AC_823_E856",
+      "score": 0.22926929392446635,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 697.1894848742604,
+      "y": 401.09317311059147,
+      "degree": 2
+    },
+    {
+      "id": 21,
+      "account_id": 4324,
+      "display_id": "MULE_AC_4324_43DE",
+      "score": 0.225478148568068,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 457.83312669284487,
+      "y": 356.9392451618726,
+      "degree": 4
+    },
+    {
+      "id": 22,
+      "account_id": 9069,
+      "display_id": "MULE_AC_9069_7B87",
+      "score": 0.21468223055464386,
+      "band": "LOW",
+      "is_positive": true,
+      "x": 667.1228676564967,
+      "y": 363.53087574833296,
+      "degree": 7
+    },
+    {
+      "id": 23,
+      "account_id": 1245,
+      "display_id": "MULE_AC_1245_410F",
+      "score": 0.1488095238095238,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 60.0,
+      "y": 164.38246760063342,
+      "degree": 0
+    },
+    {
+      "id": 24,
+      "account_id": 2768,
+      "display_id": "MULE_AC_2768_3E98",
+      "score": 0.1478095238095238,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 626.2346975308769,
+      "y": 370.1925552645848,
+      "degree": 5
+    },
+    {
+      "id": 25,
+      "account_id": 2872,
+      "display_id": "MULE_AC_2872_E630",
+      "score": 0.14624586939768552,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 703.5721463337577,
+      "y": 466.7631260192095,
+      "degree": 3
+    },
+    {
+      "id": 26,
+      "account_id": 3420,
+      "display_id": "MULE_AC_3420_139B",
+      "score": 0.13760262725779968,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 714.1772883168121,
+      "y": 360.81321119343085,
+      "degree": 5
+    },
+    {
+      "id": 27,
+      "account_id": 1043,
+      "display_id": "MULE_AC_1043_51CC",
+      "score": 0.13441471239447803,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 629.4473710091319,
+      "y": 435.20346925898224,
+      "degree": 5
+    },
+    {
+      "id": 28,
+      "account_id": 1021,
+      "display_id": "MULE_AC_1021_53DB",
+      "score": 0.10605500821018062,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 646.2848057487118,
+      "y": 381.9373277587313,
+      "degree": 3
+    },
+    {
+      "id": 29,
+      "account_id": 1316,
+      "display_id": "MULE_AC_1316_1A9A",
+      "score": 0.10475757575757576,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 591.8340391539075,
+      "y": 453.6677269787159,
+      "degree": 3
+    },
+    {
+      "id": 30,
+      "account_id": 5539,
+      "display_id": "MULE_AC_5539_16B1",
+      "score": 0.10412842457176763,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 587.0630384437384,
+      "y": 363.9168901749758,
+      "degree": 4
+    },
+    {
+      "id": 31,
+      "account_id": 275,
+      "display_id": "MULE_AC_275_C89D",
+      "score": 0.10249396621053349,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 675.9907441614992,
+      "y": 383.8298019395789,
+      "degree": 5
+    },
+    {
+      "id": 32,
+      "account_id": 165,
+      "display_id": "MULE_AC_165_11EB",
+      "score": 0.10105500821018061,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 736.9395148466124,
+      "y": 465.84139725371,
+      "degree": 3
+    },
+    {
+      "id": 33,
+      "account_id": 2071,
+      "display_id": "MULE_AC_2071_8D5C",
+      "score": 0.09760262725779967,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 656.2147506279655,
+      "y": 409.66556437128094,
+      "degree": 5
+    },
+    {
+      "id": 34,
+      "account_id": 884,
+      "display_id": "MULE_AC_884_636F",
+      "score": 0.09629246682999218,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 710.0360997008655,
+      "y": 439.0382504159433,
+      "degree": 2
+    },
+    {
+      "id": 35,
+      "account_id": 2558,
+      "display_id": "MULE_AC_2558_F247",
+      "score": 0.09260262725779966,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 606.6925299734701,
+      "y": 373.4635203687269,
+      "degree": 5
+    },
+    {
+      "id": 36,
+      "account_id": 956,
+      "display_id": "MULE_AC_956_6780",
+      "score": 0.08955067920585162,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 544.8748214735101,
+      "y": 373.4996793156312,
+      "degree": 5
+    },
+    {
+      "id": 37,
+      "account_id": 1624,
+      "display_id": "MULE_AC_1624_78B5",
+      "score": 0.08955067920585162,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 533.7949927138943,
+      "y": 357.53601067071986,
+      "degree": 4
+    },
+    {
+      "id": 38,
+      "account_id": 2734,
+      "display_id": "MULE_AC_2734_D0A4",
+      "score": 0.08528138528138528,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 737.0526305321255,
+      "y": 480.0,
+      "degree": 2
+    },
+    {
+      "id": 39,
+      "account_id": 4675,
+      "display_id": "MULE_AC_4675_7237",
+      "score": 0.0810550082101806,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 482.60382251118585,
+      "y": 372.54222966232896,
+      "degree": 6
+    },
+    {
+      "id": 40,
+      "account_id": 2116,
+      "display_id": "MULE_AC_2116_17D8",
+      "score": 0.0810550082101806,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 519.1275744893373,
+      "y": 371.2174137970306,
+      "degree": 5
+    },
+    {
+      "id": 41,
+      "account_id": 9057,
+      "display_id": "MULE_AC_9057_FD84",
+      "score": 0.07714222052457345,
+      "band": "LOW",
+      "is_positive": true,
+      "x": 590.638436417563,
+      "y": 355.0148948732039,
+      "degree": 5
+    },
+    {
+      "id": 42,
+      "account_id": 5543,
+      "display_id": "MULE_AC_5543_08AF",
+      "score": 0.07575757575757576,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 650.2394931761514,
+      "y": 348.1257451854966,
+      "degree": 2
+    },
+    {
+      "id": 43,
+      "account_id": 375,
+      "display_id": "MULE_AC_375_EC14",
+      "score": 0.07575757575757576,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 467.47385563198856,
+      "y": 340.8434633817911,
+      "degree": 3
+    },
+    {
+      "id": 44,
+      "account_id": 894,
+      "display_id": "MULE_AC_894_656D",
+      "score": 0.07260262725779967,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 519.4002073594495,
+      "y": 338.6175835504556,
+      "degree": 3
+    },
+    {
+      "id": 45,
+      "account_id": 5917,
+      "display_id": "MULE_AC_5917_D13F",
+      "score": 0.07260262725779967,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 651.2728279791072,
+      "y": 368.89422562960993,
+      "degree": 10
+    },
+    {
+      "id": 46,
+      "account_id": 3242,
+      "display_id": "MULE_AC_3242_9FF2",
+      "score": 0.07075757575757576,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 571.2136266386078,
+      "y": 437.3152311789913,
+      "degree": 4
+    },
+    {
+      "id": 47,
+      "account_id": 2433,
+      "display_id": "MULE_AC_2433_4BCB",
+      "score": 0.06726190476190476,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 458.84875371463136,
+      "y": 379.7270654527516,
+      "degree": 3
+    },
+    {
+      "id": 48,
+      "account_id": 2616,
+      "display_id": "MULE_AC_2616_393B",
+      "score": 0.057499363381716316,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 463.0260107650684,
+      "y": 323.39620006816557,
+      "degree": 3
+    },
+    {
+      "id": 49,
+      "account_id": 285,
+      "display_id": "MULE_AC_285_48B8",
+      "score": 0.05298796506281005,
+      "band": "LOW",
+      "is_positive": false,
+      "x": 426.4921161400338,
+      "y": 327.78128733738185,
+      "degree": 2
+    }
+  ],
+  "edges": [
+    {
+      "source": 0,
+      "target": 14,
+      "similarity": 0.5302
+    },
+    {
+      "source": 0,
+      "target": 16,
+      "similarity": 0.613
+    },
+    {
+      "source": 0,
+      "target": 18,
+      "similarity": 0.7186
+    },
+    {
+      "source": 0,
+      "target": 22,
+      "similarity": 0.6357
+    },
+    {
+      "source": 0,
+      "target": 26,
+      "similarity": 0.446
+    },
+    {
+      "source": 0,
+      "target": 31,
+      "similarity": 0.3597
+    },
+    {
+      "source": 0,
+      "target": 45,
+      "similarity": 0.3892
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "similarity": 0.5482
+    },
+    {
+      "source": 1,
+      "target": 3,
+      "similarity": 0.698
+    },
+    {
+      "source": 1,
+      "target": 4,
+      "similarity": 0.7014
+    },
+    {
+      "source": 1,
+      "target": 5,
+      "similarity": 0.431
+    },
+    {
+      "source": 1,
+      "target": 6,
+      "similarity": 0.6302
+    },
+    {
+      "source": 1,
+      "target": 7,
+      "similarity": 0.4544
+    },
+    {
+      "source": 1,
+      "target": 12,
+      "similarity": 0.3256
+    },
+    {
+      "source": 1,
+      "target": 27,
+      "similarity": 0.3283
+    },
+    {
+      "source": 1,
+      "target": 29,
+      "similarity": 0.3869
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "similarity": 0.82
+    },
+    {
+      "source": 2,
+      "target": 4,
+      "similarity": 0.8213
+    },
+    {
+      "source": 2,
+      "target": 5,
+      "similarity": 0.8961
+    },
+    {
+      "source": 2,
+      "target": 6,
+      "similarity": 0.6248
+    },
+    {
+      "source": 2,
+      "target": 12,
+      "similarity": 0.4481
+    },
+    {
+      "source": 2,
+      "target": 15,
+      "similarity": 0.6425
+    },
+    {
+      "source": 3,
+      "target": 4,
+      "similarity": 0.9998
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "similarity": 0.6936
+    },
+    {
+      "source": 3,
+      "target": 6,
+      "similarity": 0.463
+    },
+    {
+      "source": 3,
+      "target": 8,
+      "similarity": 0.4769
+    },
+    {
+      "source": 3,
+      "target": 12,
+      "similarity": 0.6031
+    },
+    {
+      "source": 4,
+      "target": 5,
+      "similarity": 0.6952
+    },
+    {
+      "source": 4,
+      "target": 6,
+      "similarity": 0.4638
+    },
+    {
+      "source": 4,
+      "target": 8,
+      "similarity": 0.4751
+    },
+    {
+      "source": 4,
+      "target": 12,
+      "similarity": 0.6012
+    },
+    {
+      "source": 4,
+      "target": 15,
+      "similarity": 0.3166
+    },
+    {
+      "source": 5,
+      "target": 6,
+      "similarity": 0.7162
+    },
+    {
+      "source": 5,
+      "target": 8,
+      "similarity": 0.4458
+    },
+    {
+      "source": 5,
+      "target": 12,
+      "similarity": 0.3272
+    },
+    {
+      "source": 5,
+      "target": 15,
+      "similarity": 0.7755
+    },
+    {
+      "source": 6,
+      "target": 7,
+      "similarity": 0.6834
+    },
+    {
+      "source": 6,
+      "target": 8,
+      "similarity": 0.3611
+    },
+    {
+      "source": 6,
+      "target": 12,
+      "similarity": 0.4211
+    },
+    {
+      "source": 6,
+      "target": 15,
+      "similarity": 0.579
+    },
+    {
+      "source": 6,
+      "target": 39,
+      "similarity": 0.4357
+    },
+    {
+      "source": 6,
+      "target": 47,
+      "similarity": 0.3329
+    },
+    {
+      "source": 7,
+      "target": 12,
+      "similarity": 0.3701
+    },
+    {
+      "source": 7,
+      "target": 16,
+      "similarity": 0.3919
+    },
+    {
+      "source": 7,
+      "target": 20,
+      "similarity": 0.4381
+    },
+    {
+      "source": 7,
+      "target": 27,
+      "similarity": 0.5545
+    },
+    {
+      "source": 7,
+      "target": 33,
+      "similarity": 0.4494
+    },
+    {
+      "source": 7,
+      "target": 35,
+      "similarity": 0.5352
+    },
+    {
+      "source": 8,
+      "target": 12,
+      "similarity": 0.5018
+    },
+    {
+      "source": 8,
+      "target": 15,
+      "similarity": 0.4501
+    },
+    {
+      "source": 8,
+      "target": 17,
+      "similarity": 0.3555
+    },
+    {
+      "source": 8,
+      "target": 46,
+      "similarity": 0.4083
+    },
+    {
+      "source": 10,
+      "target": 14,
+      "similarity": 0.5223
+    },
+    {
+      "source": 10,
+      "target": 20,
+      "similarity": 0.555
+    },
+    {
+      "source": 10,
+      "target": 26,
+      "similarity": 0.4535
+    },
+    {
+      "source": 11,
+      "target": 19,
+      "similarity": 0.7182
+    },
+    {
+      "source": 12,
+      "target": 15,
+      "similarity": 0.34
+    },
+    {
+      "source": 12,
+      "target": 17,
+      "similarity": 0.4053
+    },
+    {
+      "source": 12,
+      "target": 46,
+      "similarity": 0.3695
+    },
+    {
+      "source": 13,
+      "target": 29,
+      "similarity": 0.5607
+    },
+    {
+      "source": 13,
+      "target": 46,
+      "similarity": 0.3545
+    },
+    {
+      "source": 14,
+      "target": 18,
+      "similarity": 0.7853
+    },
+    {
+      "source": 14,
+      "target": 22,
+      "similarity": 0.5499
+    },
+    {
+      "source": 14,
+      "target": 26,
+      "similarity": 0.7293
+    },
+    {
+      "source": 14,
+      "target": 45,
+      "similarity": 0.3909
+    },
+    {
+      "source": 15,
+      "target": 36,
+      "similarity": 0.3444
+    },
+    {
+      "source": 15,
+      "target": 40,
+      "similarity": 0.3611
+    },
+    {
+      "source": 16,
+      "target": 24,
+      "similarity": 0.6348
+    },
+    {
+      "source": 16,
+      "target": 27,
+      "similarity": 0.3303
+    },
+    {
+      "source": 16,
+      "target": 31,
+      "similarity": 0.4621
+    },
+    {
+      "source": 16,
+      "target": 33,
+      "similarity": 0.4406
+    },
+    {
+      "source": 16,
+      "target": 35,
+      "similarity": 0.4966
+    },
+    {
+      "source": 17,
+      "target": 28,
+      "similarity": 0.4447
+    },
+    {
+      "source": 17,
+      "target": 45,
+      "similarity": 0.5558
+    },
+    {
+      "source": 17,
+      "target": 46,
+      "similarity": 0.3508
+    },
+    {
+      "source": 18,
+      "target": 22,
+      "similarity": 0.5394
+    },
+    {
+      "source": 18,
+      "target": 26,
+      "similarity": 0.6406
+    },
+    {
+      "source": 18,
+      "target": 35,
+      "similarity": 0.3869
+    },
+    {
+      "source": 18,
+      "target": 45,
+      "similarity": 0.3855
+    },
+    {
+      "source": 19,
+      "target": 30,
+      "similarity": 0.388
+    },
+    {
+      "source": 19,
+      "target": 33,
+      "similarity": 0.4632
+    },
+    {
+      "source": 19,
+      "target": 37,
+      "similarity": 0.3399
+    },
+    {
+      "source": 21,
+      "target": 37,
+      "similarity": 0.3855
+    },
+    {
+      "source": 21,
+      "target": 39,
+      "similarity": 0.648
+    },
+    {
+      "source": 21,
+      "target": 47,
+      "similarity": 0.5912
+    },
+    {
+      "source": 21,
+      "target": 49,
+      "similarity": 0.3463
+    },
+    {
+      "source": 22,
+      "target": 28,
+      "similarity": 0.3899
+    },
+    {
+      "source": 22,
+      "target": 31,
+      "similarity": 0.4823
+    },
+    {
+      "source": 22,
+      "target": 41,
+      "similarity": 0.4057
+    },
+    {
+      "source": 22,
+      "target": 45,
+      "similarity": 0.4344
+    },
+    {
+      "source": 24,
+      "target": 31,
+      "similarity": 0.3536
+    },
+    {
+      "source": 24,
+      "target": 35,
+      "similarity": 0.4585
+    },
+    {
+      "source": 24,
+      "target": 36,
+      "similarity": 0.4144
+    },
+    {
+      "source": 24,
+      "target": 42,
+      "similarity": 0.5539
+    },
+    {
+      "source": 25,
+      "target": 27,
+      "similarity": 0.3382
+    },
+    {
+      "source": 25,
+      "target": 32,
+      "similarity": 0.6764
+    },
+    {
+      "source": 25,
+      "target": 38,
+      "similarity": 0.7915
+    },
+    {
+      "source": 26,
+      "target": 45,
+      "similarity": 0.6017
+    },
+    {
+      "source": 27,
+      "target": 29,
+      "similarity": 0.5628
+    },
+    {
+      "source": 28,
+      "target": 45,
+      "similarity": 0.6497
+    },
+    {
+      "source": 30,
+      "target": 36,
+      "similarity": 0.567
+    },
+    {
+      "source": 30,
+      "target": 41,
+      "similarity": 0.3534
+    },
+    {
+      "source": 30,
+      "target": 45,
+      "similarity": 0.3793
+    },
+    {
+      "source": 31,
+      "target": 33,
+      "similarity": 0.3179
+    },
+    {
+      "source": 32,
+      "target": 34,
+      "similarity": 0.4473
+    },
+    {
+      "source": 32,
+      "target": 38,
+      "similarity": 0.6667
+    },
+    {
+      "source": 33,
+      "target": 34,
+      "similarity": 0.5052
+    },
+    {
+      "source": 35,
+      "target": 44,
+      "similarity": 0.3469
+    },
+    {
+      "source": 36,
+      "target": 39,
+      "similarity": 0.4192
+    },
+    {
+      "source": 36,
+      "target": 40,
+      "similarity": 0.5655
+    },
+    {
+      "source": 37,
+      "target": 40,
+      "similarity": 0.3904
+    },
+    {
+      "source": 37,
+      "target": 41,
+      "similarity": 0.5695
+    },
+    {
+      "source": 39,
+      "target": 40,
+      "similarity": 0.362
+    },
+    {
+      "source": 39,
+      "target": 43,
+      "similarity": 0.3944
+    },
+    {
+      "source": 39,
+      "target": 47,
+      "similarity": 0.8965
+    },
+    {
+      "source": 40,
+      "target": 41,
+      "similarity": 0.3202
+    },
+    {
+      "source": 41,
+      "target": 45,
+      "similarity": 0.3414
+    },
+    {
+      "source": 42,
+      "target": 45,
+      "similarity": 0.4976
+    },
+    {
+      "source": 43,
+      "target": 44,
+      "similarity": 0.3883
+    },
+    {
+      "source": 43,
+      "target": 48,
+      "similarity": 0.3475
+    },
+    {
+      "source": 44,
+      "target": 48,
+      "similarity": 0.5176
+    },
+    {
+      "source": 48,
+      "target": 49,
+      "similarity": 0.7436
+    }
+  ]
+}

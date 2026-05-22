@@ -1,0 +1,42 @@
+{
+  "model_hash": "c4a43cb2b9a69325",
+  "metrics_uncalibrated": {
+    "pr_auc": 0.8690198068122045,
+    "roc_auc": 0.993675744226405,
+    "precision_at_top1pct": 0.76
+  },
+  "metrics_calibrated": {
+    "pr_auc": 0.8717325472788415,
+    "roc_auc": 0.9625717527699907,
+    "precision_at_top1pct": 0.8
+  },
+  "brier_uncal": 0.002336713967427068,
+  "brier_cal": 0.0023610014716918346,
+  "risk_bands": [
+    {
+      "band": "Low",
+      "range": "[0.00, 0.30)",
+      "n": 2503,
+      "positives": 6,
+      "fraction_of_alerts": "25.00%",
+      "precision_in_band": "0.0024"
+    },
+    {
+      "band": "Medium",
+      "range": "[0.30, 0.70)",
+      "n": 3,
+      "positives": 3,
+      "fraction_of_alerts": "12.50%",
+      "precision_in_band": "1.0000"
+    },
+    {
+      "band": "High",
+      "range": "[0.70, 1.01)",
+      "n": 15,
+      "positives": 15,
+      "fraction_of_alerts": "62.50%",
+      "precision_in_band": "1.0000"
+    }
+  ],
+  "n_test_positives": 24
+}

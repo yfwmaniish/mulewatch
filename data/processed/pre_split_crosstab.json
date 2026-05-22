@@ -1,0 +1,362 @@
+{
+  "rule": "Cardinality-coincidence: positive_count == row_count of any rare category \u21d2 identity assumed",
+  "tables": {
+    "F2230": {
+      "rows": [
+        {
+          "category": "Dec25",
+          "rows": 10,
+          "positives": 10,
+          "negatives": 0,
+          "target_rate": 1.0,
+          "flag": "PURE POSITIVE category"
+        },
+        {
+          "category": "Nov25",
+          "rows": 23,
+          "positives": 23,
+          "negatives": 0,
+          "target_rate": 1.0,
+          "flag": "PURE POSITIVE category"
+        },
+        {
+          "category": "Oct25",
+          "rows": 9001,
+          "positives": 0,
+          "negatives": 9001,
+          "target_rate": 0.0
+        },
+        {
+          "category": "Sep25",
+          "rows": 48,
+          "positives": 48,
+          "negatives": 0,
+          "target_rate": 1.0,
+          "flag": "PURE POSITIVE category"
+        }
+      ],
+      "identity_flags": [
+        "Dec25",
+        "Nov25",
+        "Sep25"
+      ]
+    },
+    "F3889": {
+      "rows": [
+        {
+          "category": "G365D",
+          "rows": 7544,
+          "positives": 72,
+          "negatives": 7472,
+          "target_rate": 0.0095
+        },
+        {
+          "category": "L14D",
+          "rows": 87,
+          "positives": 0,
+          "negatives": 87,
+          "target_rate": 0.0
+        },
+        {
+          "category": "L180D",
+          "rows": 313,
+          "positives": 3,
+          "negatives": 310,
+          "target_rate": 0.0096
+        },
+        {
+          "category": "L31D",
+          "rows": 148,
+          "positives": 1,
+          "negatives": 147,
+          "target_rate": 0.0068
+        },
+        {
+          "category": "L365D",
+          "rows": 397,
+          "positives": 5,
+          "negatives": 392,
+          "target_rate": 0.0126
+        },
+        {
+          "category": "L7D",
+          "rows": 386,
+          "positives": 0,
+          "negatives": 386,
+          "target_rate": 0.0
+        },
+        {
+          "category": "L90D",
+          "rows": 207,
+          "positives": 0,
+          "negatives": 207,
+          "target_rate": 0.0
+        }
+      ],
+      "identity_flags": []
+    },
+    "F3886": {
+      "rows": [
+        {
+          "category": "Agri Adv",
+          "rows": 96,
+          "positives": 0,
+          "negatives": 96,
+          "target_rate": 0.0
+        },
+        {
+          "category": "All Others",
+          "rows": 10,
+          "positives": 0,
+          "negatives": 10,
+          "target_rate": 0.0
+        },
+        {
+          "category": "Corp Adv",
+          "rows": 23,
+          "positives": 0,
+          "negatives": 23,
+          "target_rate": 0.0
+        },
+        {
+          "category": "Current",
+          "rows": 2051,
+          "positives": 4,
+          "negatives": 2047,
+          "target_rate": 0.002
+        },
+        {
+          "category": "Gold Loan",
+          "rows": 23,
+          "positives": 0,
+          "negatives": 23,
+          "target_rate": 0.0
+        },
+        {
+          "category": "HL",
+          "rows": 10,
+          "positives": 0,
+          "negatives": 10,
+          "target_rate": 0.0
+        },
+        {
+          "category": "ML",
+          "rows": 4,
+          "positives": 0,
+          "negatives": 4,
+          "target_rate": 0.0
+        },
+        {
+          "category": "MSME LA TDR",
+          "rows": 20,
+          "positives": 0,
+          "negatives": 20,
+          "target_rate": 0.0
+        },
+        {
+          "category": "MSME Medium",
+          "rows": 71,
+          "positives": 1,
+          "negatives": 70,
+          "target_rate": 0.0141
+        },
+        {
+          "category": "MSME Micro",
+          "rows": 337,
+          "positives": 0,
+          "negatives": 337,
+          "target_rate": 0.0
+        },
+        {
+          "category": "MSME Small",
+          "rows": 242,
+          "positives": 0,
+          "negatives": 242,
+          "target_rate": 0.0
+        },
+        {
+          "category": "PL",
+          "rows": 3,
+          "positives": 0,
+          "negatives": 3,
+          "target_rate": 0.0
+        },
+        {
+          "category": "Retail LA TDR",
+          "rows": 19,
+          "positives": 0,
+          "negatives": 19,
+          "target_rate": 0.0
+        },
+        {
+          "category": "Retail Others",
+          "rows": 22,
+          "positives": 0,
+          "negatives": 22,
+          "target_rate": 0.0
+        },
+        {
+          "category": "Savings",
+          "rows": 5956,
+          "positives": 76,
+          "negatives": 5880,
+          "target_rate": 0.0128
+        },
+        {
+          "category": "Staff Loans",
+          "rows": 108,
+          "positives": 0,
+          "negatives": 108,
+          "target_rate": 0.0
+        },
+        {
+          "category": "Term Deposit",
+          "rows": 87,
+          "positives": 0,
+          "negatives": 87,
+          "target_rate": 0.0
+        }
+      ],
+      "identity_flags": []
+    },
+    "F3890": {
+      "rows": [
+        {
+          "category": "M",
+          "rows": 2900,
+          "positives": 18,
+          "negatives": 2882,
+          "target_rate": 0.0062
+        },
+        {
+          "category": "R",
+          "rows": 2015,
+          "positives": 29,
+          "negatives": 1986,
+          "target_rate": 0.0144
+        },
+        {
+          "category": "SU",
+          "rows": 2390,
+          "positives": 21,
+          "negatives": 2369,
+          "target_rate": 0.0088
+        },
+        {
+          "category": "U",
+          "rows": 1777,
+          "positives": 13,
+          "negatives": 1764,
+          "target_rate": 0.0073
+        }
+      ],
+      "identity_flags": []
+    },
+    "F3891": {
+      "rows": [
+        {
+          "category": "agriculture",
+          "rows": 1112,
+          "positives": 14,
+          "negatives": 1098,
+          "target_rate": 0.0126
+        },
+        {
+          "category": "housewife",
+          "rows": 660,
+          "positives": 3,
+          "negatives": 657,
+          "target_rate": 0.0045
+        },
+        {
+          "category": "others",
+          "rows": 169,
+          "positives": 0,
+          "negatives": 169,
+          "target_rate": 0.0
+        },
+        {
+          "category": "retired",
+          "rows": 96,
+          "positives": 1,
+          "negatives": 95,
+          "target_rate": 0.0104
+        },
+        {
+          "category": "salaried",
+          "rows": 1909,
+          "positives": 14,
+          "negatives": 1895,
+          "target_rate": 0.0073
+        },
+        {
+          "category": "selfemployed",
+          "rows": 3951,
+          "positives": 26,
+          "negatives": 3925,
+          "target_rate": 0.0066
+        },
+        {
+          "category": "student",
+          "rows": 1185,
+          "positives": 23,
+          "negatives": 1162,
+          "target_rate": 0.0194
+        }
+      ],
+      "identity_flags": []
+    },
+    "F3892": {
+      "rows": [
+        {
+          "category": "F",
+          "rows": 1416,
+          "positives": 13,
+          "negatives": 1403,
+          "target_rate": 0.0092
+        },
+        {
+          "category": "M",
+          "rows": 5007,
+          "positives": 63,
+          "negatives": 4944,
+          "target_rate": 0.0126
+        },
+        {
+          "category": "O",
+          "rows": 61,
+          "positives": 0,
+          "negatives": 61,
+          "target_rate": 0.0
+        },
+        {
+          "category": "nan",
+          "rows": 2598,
+          "positives": 5,
+          "negatives": 2593,
+          "target_rate": 0.0019
+        }
+      ],
+      "identity_flags": []
+    },
+    "F3893": {
+      "rows": [
+        {
+          "category": "CORPORATE",
+          "rows": 2645,
+          "positives": 5,
+          "negatives": 2640,
+          "target_rate": 0.0019
+        },
+        {
+          "category": "RETAIL",
+          "rows": 6437,
+          "positives": 76,
+          "negatives": 6361,
+          "target_rate": 0.0118
+        }
+      ],
+      "identity_flags": []
+    }
+  }
+}

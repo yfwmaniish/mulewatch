@@ -1,0 +1,44 @@
+# Raw dataset — exceeds GitHub's 100 MB file limit (112 MB)
+DataSet.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.turbo/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Generated logs (will regrow on every run; not source-of-truth)
+logs/*.jsonl
+!logs/.gitkeep
+
+# Feedback / I4C state — persisted at runtime, regenerates from analyst actions
+data/feedback/*.json
+data/feedback/*.jsonl
+
+# Build / temp
+*.tsbuildinfo
+next-env.d.ts
+
+# Extraction working directories
+_hacky_extract/

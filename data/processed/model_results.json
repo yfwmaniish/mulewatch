@@ -1,0 +1,159 @@
+{
+  "git_sha": "no-git",
+  "train_hash": "b5f14e5eecf84942",
+  "metrics": [
+    {
+      "name": "LR-L1 on seed-18 (interpretable floor)",
+      "features_count": 18,
+      "pr_auc": 0.0559569237889091,
+      "pr_auc_ci_lo": 0.020991242749678927,
+      "pr_auc_ci_hi": 0.15812819568206896,
+      "pr_auc_median_boot": 0.060916163928891744,
+      "precision_at_top_1pct": 0.12,
+      "roc_auc": 0.7573755172874115,
+      "recall_at_p50": 0.0,
+      "f2": 0.20231213872832374,
+      "f2_threshold": 0.8404856524769667,
+      "hash": "589812e68ce56bb3"
+    },
+    {
+      "name": "LightGBM on seed-18 (leakage benchmark)",
+      "features_count": 18,
+      "pr_auc": 0.3304543461297979,
+      "pr_auc_ci_lo": 0.15681834228446057,
+      "pr_auc_ci_hi": 0.546811149307522,
+      "pr_auc_median_boot": 0.329508274174533,
+      "precision_at_top_1pct": 0.28,
+      "roc_auc": 0.8259411293552262,
+      "recall_at_p50": 0.2916666666666667,
+      "f2": 0.33333333333333337,
+      "f2_threshold": 0.609230644465003,
+      "hash": "58daafbc0a44197d"
+    },
+    {
+      "name": "LightGBM on stable features (primary)",
+      "features_count": 385,
+      "pr_auc": 0.8690198068122045,
+      "pr_auc_ci_lo": 0.7433078900138711,
+      "pr_auc_ci_hi": 0.9691003515281712,
+      "pr_auc_median_boot": 0.874861682770646,
+      "precision_at_top_1pct": 0.76,
+      "roc_auc": 0.993675744226405,
+      "recall_at_p50": 0.8333333333333334,
+      "f2": 0.8189655172413792,
+      "f2_threshold": 0.29540979024437397,
+      "hash": "0a447c986cd0e73a"
+    }
+  ],
+  "leakage_audit": {
+    "lgbm_seed18_pr_auc": 0.3304543461297979,
+    "lgbm_top20_by_auc_pr_auc": 0.6238189230475915,
+    "lgbm_stable_pr_auc": 0.8690198068122045,
+    "gap_seed18_to_stable": 0.5385654606824066,
+    "gap_top20_to_stable": 0.24520088376461302,
+    "threshold": 0.15,
+    "initial_verdict": "INVESTIGATE",
+    "post_investigation_verdict": "CLEARED \u2014 gap explained by distributed signal, not hidden leakage",
+    "top10_leakage_checks": [
+      {
+        "feature": "F3898",
+        "gain": 103508.0177858693,
+        "corr_with_non_oct25": -0.05324105331112146
+      },
+      {
+        "feature": "F3914",
+        "gain": 73914.75796449464,
+        "corr_with_non_oct25": -0.04990878224495208
+      },
+      {
+        "feature": "F2586",
+        "gain": 19353.37204092415,
+        "corr_with_non_oct25": -0.003177506147779285
+      },
+      {
+        "feature": "F1323",
+        "gain": 15206.241829871666,
+        "corr_with_non_oct25": -0.015729944892600663
+      },
+      {
+        "feature": "F3887",
+        "gain": 11288.317043139541,
+        "corr_with_non_oct25": -0.009508969944198128
+      },
+      {
+        "feature": "F3811",
+        "gain": 11191.777349938746,
+        "corr_with_non_oct25": -0.004649198719648763
+      },
+      {
+        "feature": "F3484",
+        "gain": 10676.219184469373,
+        "corr_with_non_oct25": 0.02918626892631557
+      },
+      {
+        "feature": "F1065",
+        "gain": 8528.330078125,
+        "corr_with_non_oct25": -0.00367934740645788
+      },
+      {
+        "feature": "F949",
+        "gain": 7487.021524214186,
+        "corr_with_non_oct25": -0.005579428835191852
+      },
+      {
+        "feature": "F2295",
+        "gain": 6846.0498046875,
+        "corr_with_non_oct25": -0.02504241444803075
+      }
+    ],
+    "max_abs_corr_top10_with_non_oct25": 0.05324105331112146
+  },
+  "importance_check": {
+    "lgbm_stable": {
+      "top_10": [
+        {
+          "feature": "F3898",
+          "importance": 103508.0177858693
+        },
+        {
+          "feature": "F3914",
+          "importance": 73914.75796449464
+        },
+        {
+          "feature": "F2586",
+          "importance": 19353.37204092415
+        },
+        {
+          "feature": "F1323",
+          "importance": 15206.241829871666
+        },
+        {
+          "feature": "F3887",
+          "importance": 11288.317043139541
+        },
+        {
+          "feature": "F3811",
+          "importance": 11191.777349938746
+        },
+        {
+          "feature": "F3484",
+          "importance": 10676.219184469373
+        },
+        {
+          "feature": "F1065",
+          "importance": 8528.330078125
+        },
+        {
+          "feature": "F949",
+          "importance": 7487.021524214186
+        },
+        {
+          "feature": "F2295",
+          "importance": 6846.0498046875
+        }
+      ],
+      "F2230_present": false,
+      "F3889_rank": null
+    }
+  }
+}

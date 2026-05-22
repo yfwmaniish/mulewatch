@@ -1,0 +1,75 @@
+{
+  "589812e68ce56bb3": {
+    "name": "LR-L1 on seed-18 (interpretable floor)",
+    "hyperparams": {
+      "penalty": "l1",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "solver": "liblinear"
+    },
+    "feature_count": 18
+  },
+  "bbf9acdd9745116e": {
+    "name": "LightGBM on seed-18 (leakage benchmark)",
+    "hyperparams": {
+      "n_estimators": 400,
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "min_data_in_leaf": 10
+    },
+    "feature_count": 18
+  },
+  "4b58c03bb34b52b6": {
+    "name": "LightGBM on stable features (primary)",
+    "hyperparams": {
+      "n_estimators": 400,
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "min_data_in_leaf": 10
+    },
+    "feature_count": 385
+  },
+  "58daafbc0a44197d": {
+    "name": "LightGBM on seed-18 (leakage benchmark)",
+    "hyperparams": {
+      "n_estimators": 500,
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "min_data_in_leaf": 20,
+      "reg_alpha": 0.1,
+      "reg_lambda": 0.1
+    },
+    "feature_count": 18
+  },
+  "0a447c986cd0e73a": {
+    "name": "LightGBM on stable features (primary)",
+    "hyperparams": {
+      "n_estimators": 500,
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "min_data_in_leaf": 20,
+      "reg_alpha": 0.1,
+      "reg_lambda": 0.1
+    },
+    "feature_count": 385,
+    "frozen_at": "2026-05-21T17:08:22.641535+00:00",
+    "frozen_note": "LOCKED for submission demo \u2014 no retrains permitted",
+    "role": "SHAP source (uncalibrated base)"
+  },
+  "c4a43cb2b9a69325": {
+    "name": "LightGBM-stable, isotonic-calibrated",
+    "hyperparams": {
+      "n_estimators": 500,
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "min_data_in_leaf": 20,
+      "reg_alpha": 0.1,
+      "reg_lambda": 0.1
+    },
+    "feature_count": 385,
+    "tag": "calibrated_isotonic_cv5",
+    "frozen_at": "2026-05-21T17:08:22.641535+00:00",
+    "frozen_note": "LOCKED for submission demo \u2014 no retrains permitted",
+    "role": "PRIMARY (calibrated)"
+  }
+}

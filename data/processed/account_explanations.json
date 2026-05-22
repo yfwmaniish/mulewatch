@@ -1,0 +1,952 @@
+[
+  {
+    "rank": 1,
+    "test_row_index": 9049,
+    "score": 0.9999999713059241,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 3.299462520230992,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 1.5396096910826584,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 62739.0,
+        "shap": 1.1402699315224218,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3484",
+        "value": 0.04,
+        "shap": 1.0511906046137547,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.01,
+        "shap": 0.9845835219031608,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 2,
+    "test_row_index": 9062,
+    "score": 0.999999955547787,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.2819228288088254,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 1.811915383095391,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 33913.0,
+        "shap": 1.1096961502274583,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3484",
+        "value": 0.06,
+        "shap": 0.989813217559104,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.0,
+        "shap": 0.9788425942894643,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 3,
+    "test_row_index": 9033,
+    "score": 0.9999999491551989,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 3.6859149980801598,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.92964925373021,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 84984.88,
+        "shap": 1.2349891371027533,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.0,
+        "shap": 0.9753646925653886,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 84984.88,
+        "shap": 0.9192205437633627,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 4,
+    "test_row_index": 9061,
+    "score": 0.9999999400160084,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 3.706045727012625,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.901370988039941,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 90587.8,
+        "shap": 1.1488632950586966,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.0,
+        "shap": 0.9751679069748979,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 90587.8,
+        "shap": 0.9407151700165723,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 5,
+    "test_row_index": 9079,
+    "score": 0.999999885667648,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 3.7853812284792703,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.424840813490219,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 126847.86,
+        "shap": 0.9594299931621052,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1863",
+        "value": 40935.86,
+        "shap": 0.9231244665205606,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2391",
+        "value": null,
+        "shap": 0.8588473025806217,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 6,
+    "test_row_index": 9071,
+    "score": 0.9999986656895792,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.9305749455941954,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 1.3267907853656065,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 9539.87,
+        "shap": 1.1320023306835492,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.14,
+        "shap": 0.9438689160986576,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 9539.87,
+        "shap": 0.8961728548775156,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 7,
+    "test_row_index": 9016,
+    "score": 0.9999906220261101,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 3.5718540295242174,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.7751047914469704,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F270",
+        "value": 0.68,
+        "shap": 1.1684483123303113,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.46,
+        "shap": 1.0583473950587245,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2391",
+        "value": null,
+        "shap": 0.7878549610144827,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 8,
+    "test_row_index": 9018,
+    "score": 0.9999181497663935,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 3.4416277819251584,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.3688145881929312,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 204579.6,
+        "shap": 1.3070700568830753,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 341844.0,
+        "shap": 1.0455089662284967,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2391",
+        "value": null,
+        "shap": 0.7936821977217503,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 9,
+    "test_row_index": 9032,
+    "score": 0.9995892362508897,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.4224737414999185,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 1.7801397248494573,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 70564.0,
+        "shap": 1.4351396708824244,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F270",
+        "value": 0.66,
+        "shap": 0.8503772286965191,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2391",
+        "value": null,
+        "shap": 0.7727511400500886,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 10,
+    "test_row_index": 9009,
+    "score": 0.9988333451022847,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 3.1966205618369967,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.5197453349559535,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F270",
+        "value": 0.83,
+        "shap": 1.1813868040704936,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 364315.5,
+        "shap": 1.0978628382414213,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.21,
+        "shap": 1.0599003520406796,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 11,
+    "test_row_index": 9014,
+    "score": 0.9906942050669845,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 2.779963751418969,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.167128472622057,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 313623.18,
+        "shap": 1.1262155583054925,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F270",
+        "value": 0.56,
+        "shap": 1.122482715448721,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.78,
+        "shap": 1.04171386399115,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 12,
+    "test_row_index": 9029,
+    "score": 0.9817324020008935,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.47676886138127,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 34736.9,
+        "shap": 1.2962021334244942,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 1.0448617369736253,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 135611.9,
+        "shap": 1.0337097607944996,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3495",
+        "value": -0.21,
+        "shap": -0.9081850197134024,
+        "direction": "pushes toward legit"
+      }
+    ]
+  },
+  {
+    "rank": 13,
+    "test_row_index": 9050,
+    "score": 0.9310947234677898,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.360149933352593,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F155",
+        "value": 0.0,
+        "shap": -1.1937453547389028,
+        "direction": "pushes toward legit"
+      },
+      {
+        "feature": "F3805",
+        "value": 73557.0,
+        "shap": 1.1057724720337097,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 277173.76,
+        "shap": 1.0390568239342004,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 0.9796096833065437,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 14,
+    "test_row_index": 9005,
+    "score": 0.9201767589291525,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.242275599046424,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 82471.0,
+        "shap": 1.3641409320258355,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F155",
+        "value": 0.0,
+        "shap": -1.2235604565600884,
+        "direction": "pushes toward legit"
+      },
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 1.0475906279042844,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 132620.58,
+        "shap": 1.0088277023347385,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 15,
+    "test_row_index": 9025,
+    "score": 0.8815734042891813,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 2.9954912673436764,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.4936080121324733,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F53",
+        "value": 0.0,
+        "shap": -1.9481516721923628,
+        "direction": "pushes toward legit"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.62,
+        "shap": 1.0020557377359343,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 236393.4,
+        "shap": 0.9789276403360233,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 16,
+    "test_row_index": 823,
+    "score": 0.7019401437733391,
+    "actual_label": 0,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 2.6765811373757136,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.2680513932436552,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 617291.0,
+        "shap": 0.6868318314793596,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1927",
+        "value": 1958.083333,
+        "shap": 0.6801789321647614,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2391",
+        "value": null,
+        "shap": 0.6652209070479475,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 17,
+    "test_row_index": 9043,
+    "score": 0.5094055058655367,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 3.058285763511008,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 1.8382021253093677,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 207365.6,
+        "shap": 0.8828452302970132,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1927",
+        "value": 4899.166667,
+        "shap": 0.6774479614254062,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3908",
+        "value": 1.0,
+        "shap": 0.5892355792275205,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 18,
+    "test_row_index": 9012,
+    "score": 0.3544665305770088,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 2.2809647372384885,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 1.041216527594076,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F270",
+        "value": 0.66,
+        "shap": 1.0297749484774563,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3484",
+        "value": 0.06,
+        "shap": 1.0015240542446384,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2489",
+        "value": 0.52,
+        "shap": 0.7733885064745615,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 19,
+    "test_row_index": 9045,
+    "score": 0.10111001270514221,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3805",
+        "value": 24800.0,
+        "shap": 1.2054235187066373,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3484",
+        "value": 0.04,
+        "shap": 0.9683522597014046,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 0.8260320035314933,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 25248.0,
+        "shap": 0.7362397245705938,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3105",
+        "value": 11.0,
+        "shap": 0.7313718462219166,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 20,
+    "test_row_index": 9004,
+    "score": 0.03164860144947926,
+    "actual_label": 1,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 2.2391365212730983,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 1.9878938206437085,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2637",
+        "value": -0.5,
+        "shap": -1.6292796843382413,
+        "direction": "pushes toward legit"
+      },
+      {
+        "feature": "F53",
+        "value": 0.0,
+        "shap": -1.4208702640753321,
+        "direction": "pushes toward legit"
+      },
+      {
+        "feature": "F270",
+        "value": 0.89,
+        "shap": 1.0554623996211636,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 21,
+    "test_row_index": 2558,
+    "score": 0.018384079609975852,
+    "actual_label": 0,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 2.693368861984478,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.334140916565978,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 253928.0,
+        "shap": 0.8842859017475074,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1927",
+        "value": 9143.117297,
+        "shap": 0.6553259944368287,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2586",
+        "value": -0.3,
+        "shap": 0.5720946968509187,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 22,
+    "test_row_index": 2071,
+    "score": 0.015591719987424877,
+    "actual_label": 0,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 1.8964235154745257,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 1.8830406430967357,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 211038.0,
+        "shap": 1.2241455115964275,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3495",
+        "value": 0.43,
+        "shap": -0.8256595973348861,
+        "direction": "pushes toward legit"
+      },
+      {
+        "feature": "F1819",
+        "value": 209669.9,
+        "shap": 0.7412332751108605,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 23,
+    "test_row_index": 1568,
+    "score": 0.012252603051508971,
+    "actual_label": 0,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 2.4748647106580353,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.1881522218748697,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3839",
+        "value": 4753957.86,
+        "shap": -1.1058195170859881,
+        "direction": "pushes toward legit"
+      },
+      {
+        "feature": "F3805",
+        "value": 495487.21,
+        "shap": 0.8802175929446217,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1927",
+        "value": 14266.40545,
+        "shap": 0.6467635008311435,
+        "direction": "pushes toward mule"
+      }
+    ]
+  },
+  {
+    "rank": 24,
+    "test_row_index": 5539,
+    "score": 0.006303988174512225,
+    "actual_label": 0,
+    "top_reasons": [
+      {
+        "feature": "F3898",
+        "value": 1.0,
+        "shap": 2.6953162769137964,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 2.2079682764727075,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F266",
+        "value": 0.67,
+        "shap": 1.364263179842203,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1927",
+        "value": 3796.320388,
+        "shap": 0.5941610960897353,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F2480",
+        "value": 4.5,
+        "shap": -0.4818511612559328,
+        "direction": "pushes toward legit"
+      }
+    ]
+  },
+  {
+    "rank": 25,
+    "test_row_index": 1316,
+    "score": 0.0011739279631952692,
+    "actual_label": 0,
+    "top_reasons": [
+      {
+        "feature": "F3914",
+        "value": 0.0,
+        "shap": 1.852002444237066,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3898",
+        "value": 0.0,
+        "shap": 1.6511727033699355,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F3805",
+        "value": 28587.0,
+        "shap": 1.236115359098071,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1819",
+        "value": 319960.03,
+        "shap": 0.9057908321126517,
+        "direction": "pushes toward mule"
+      },
+      {
+        "feature": "F1927",
+        "value": 2943.428571,
+        "shap": 0.6651989804378632,
+        "direction": "pushes toward mule"
+      }
+    ]
+  }
+]
