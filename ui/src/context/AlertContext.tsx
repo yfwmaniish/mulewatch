@@ -46,7 +46,7 @@ export interface ActionLogItem {
 
 export interface SystemSettings {
   decisionBoundary: number; // 0.50 - 0.95
-  upiFanoutLimit: number; // 10 - 100
+  upiFanoutLimit: number;   // 10 - 100
   dormancyLimitDays: number; // 30 - 365
   autoHoldLeg: boolean;
   forceGov14cLock: boolean;
@@ -60,11 +60,26 @@ interface AlertContextType {
   trueMulesCount: number;
   streamEvents: StreamEvent[];
   eventsPerSecond: number;
+
+  // Single-account mutations
   markAsFalsePositive: (accountId: string) => Promise<void>;
   executeSystemBlock: (accountId: string) => Promise<void>;
-  currentView: 'dashboard' | 'alerts' | 'triage' | 'registry' | 'network';
+  escalateAccount: (accountId: string, notes?: string) => Promise<void>;
+
+  // Bulk mutations
+  bulkMarkFalsePositive: (accountIds: string[]) => Promise<void>;
+  bulkEscalate: (accountIds: string[]) => Promise<void>;
+
+  // Selection state for bulk actions
+  selectedAlertIds: Set<string>;
+  toggleAlertSelection: (id: string) => void;
+  selectAllAlerts: () => void;
+  clearSelection: () => void;
+
+  // View routing
+  currentView: 'dashboard' | 'alerts' | 'triage' | 'registry' | 'network' | 'audit' | 'reports';
   selectedAlertId: string | null;
-  setCurrentView: (view: 'dashboard' | 'alerts' | 'triage' | 'registry' | 'network') => void;
+  setCurrentView: (view: 'dashboard' | 'alerts' | 'triage' | 'registry' | 'network' | 'audit' | 'reports') => void;
   setSelectedAlertId: (id: string | null) => void;
 
   // Live API health
@@ -72,6 +87,14 @@ interface AlertContextType {
   modelVersion: string;
   apiError: string | null;
   refreshAlerts: () => Promise<void>;
+
+  // Analyst identity
+  analystId: string;
+  setAnalystId: (id: string) => void;
+
+  // Dark mode
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
 
   // Phase 9 States
   isSettingsOpen: boolean;
@@ -107,8 +130,7 @@ interface AlertContextType {
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
 
-// How many accounts to surface in the queue. Real API has 2,521 rows total;
-// the UI focuses on the high-risk top to keep visual density manageable.
+// How many accounts to surface in the queue.
 const ALERT_QUEUE_LIMIT = 40;
 
 const initialAnalysts: AnalystFeedItem[] = [
@@ -119,25 +141,30 @@ const initialAnalysts: AnalystFeedItem[] = [
 ];
 
 const initialRecentLogs: ActionLogItem[] = [
-  // Use a stable placeholder for SSR; the boot log is appended after mount via useEffect.
   { channel: 'SYSTEM', id: 'BOOT', time: '--:--:-- UTC', status: 'Connecting to scoring API…', color: 'text-slate-500 bg-slate-50 border-slate-200' },
 ];
 
 export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [alerts, setAlerts] = useState<AccountAlert[]>([]);
   const [alertCache, setAlertCache] = useState<Record<string, AccountAlert>>({});
-  // Always derived from the persisted matchedRules — survives refresh.
   const [pendingRetrainCount, setPendingRetrainCount] = useState<number>(0);
   const [totalProcessedCount, setTotalProcessedCount] = useState<number>(0);
   const [trueMulesCount, setTrueMulesCount] = useState<number>(0);
   const [streamEvents, setStreamEvents] = useState<StreamEvent[]>([]);
   const [eventsPerSecond, setEventsPerSecond] = useState<number>(45);
-  const [currentView, setCurrentView] = useState<'dashboard' | 'alerts' | 'triage' | 'registry' | 'network'>('dashboard');
+  const [currentView, setCurrentView] = useState<AlertContextType['currentView']>('dashboard');
   const [selectedAlertId, setSelectedAlertId] = useState<string | null>(null);
+  const [selectedAlertIds, setSelectedAlertIds] = useState<Set<string>>(new Set());
 
   const [apiStatus, setApiStatus] = useState<'connecting' | 'online' | 'offline'>('connecting');
   const [apiError, setApiError] = useState<string | null>(null);
   const [modelVersion, setModelVersion] = useState<string>('');
+
+  // Analyst identity — persisted in localStorage
+  const [analystId, setAnalystIdState] = useState<string>('analyst-01');
+
+  // Dark mode — persisted in localStorage
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   // Phase 9 overlay visibility states
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -162,6 +189,36 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'warning' } | null>(null);
 
+  // ---- Init from localStorage (client-side only) ----
+  useEffect(() => {
+    const storedAnalystId = localStorage.getItem('mw_analyst_id');
+    if (storedAnalystId) setAnalystIdState(storedAnalystId);
+
+    const storedDarkMode = localStorage.getItem('mw_dark_mode');
+    if (storedDarkMode === 'true') {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  const setAnalystId = (id: string) => {
+    setAnalystIdState(id);
+    localStorage.setItem('mw_analyst_id', id);
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => {
+      const next = !prev;
+      localStorage.setItem('mw_dark_mode', String(next));
+      if (next) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      return next;
+    });
+  };
+
   const showToast = (message: string, type: 'success' | 'warning') => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 4000);
@@ -182,7 +239,25 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
   };
 
-  // ---------- Real-API ingest ----------
+  // ---- Selection helpers ----
+  const toggleAlertSelection = (id: string) => {
+    setSelectedAlertIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const selectAllAlerts = () => {
+    setSelectedAlertIds(new Set(alerts.map((a) => a.accountId)));
+  };
+
+  const clearSelection = () => {
+    setSelectedAlertIds(new Set());
+  };
+
+  // ---- Real-API ingest ----
   const refreshAlerts = useCallback(async () => {
     try {
       const [health, list] = await Promise.all([
@@ -210,7 +285,6 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   useEffect(() => {
-    // Patch the boot-log timestamp client-side now that we're past hydration.
     setRecentLogs((prev) =>
       prev.map((log) =>
         log.id === 'BOOT' && log.time.startsWith('--')
@@ -231,7 +305,7 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return () => clearInterval(interval);
   }, [refreshAlerts]);
 
-  // ---------- Lazy detail fetch when a row is selected ----------
+  // ---- Lazy detail fetch when a row is selected ----
   useEffect(() => {
     if (!selectedAlertId) return;
     const numeric = parseNumericId(selectedAlertId);
@@ -245,14 +319,10 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setAlertCache((prev) => ({ ...prev, [selectedAlertId]: enriched }));
         setAlerts((prev) => prev.map((a) => (a.accountId === selectedAlertId ? enriched : a)));
       })
-      .catch(() => {
-        /* swallow; UI shows empty SHAP */
-      });
+      .catch(() => { /* swallow; UI shows empty SHAP */ });
   }, [selectedAlertId, alertCache]);
 
-  // ---------- Derived: blockedAccounts from persisted hard-block rules ----------
-  // Only count rules with the hard-block prefixes (matches the API's policy.decide()).
-  // Synthesized flavor rules (e.g. "Student + High Velocity") don't count as a freeze.
+  // ---- Derived: blockedAccounts ----
   const HARD_BLOCK_PREFIXES = ['I4C', 'CFCFRMS', 'FIU'];
   const isHardBlockRule = (r: string) =>
     HARD_BLOCK_PREFIXES.some((p) => r.toUpperCase().startsWith(p));
@@ -261,7 +331,7 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     [alerts],
   );
 
-  // ---------- Decision-boundary re-banding ----------
+  // ---- Decision-boundary re-banding ----
   const calibratedAlerts = React.useMemo(() => {
     return alerts.map((alert) => {
       if (alert.riskBand === 'Hard Hit') return alert;
@@ -276,7 +346,7 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
   }, [alerts, settings.decisionBoundary]);
 
-  // ---------- Background ambient stream simulator (visual filler) ----------
+  // ---- Background ambient stream simulator ----
   useEffect(() => {
     const generateRandomEvent = (indexOffset = 0): StreamEvent => {
       const channels: StreamEvent['channel'][] = ['UPI', 'IMPS', 'NEFT', 'RTGS', 'AePS', 'Cards', 'Branch'];
@@ -312,7 +382,7 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return () => clearInterval(interval);
   }, [settings.decisionBoundary]);
 
-  // ---------- Real mutations: feedback + I4C ----------
+  // ---- Single-account mutations ----
   const markAsFalsePositive = async (displayId: string) => {
     const numeric = parseNumericId(displayId);
     if (numeric == null) return;
@@ -320,9 +390,10 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const res = await api.submitFeedback({
         account_id: numeric,
         verdict: 'false_positive',
-        analyst_id: 'demo-analyst',
+        analyst_id: analystId,
       });
       setAlerts((prev) => prev.filter((a) => a.accountId !== displayId));
+      setSelectedAlertIds((prev) => { const n = new Set(prev); n.delete(displayId); return n; });
       setPendingRetrainCount(res.queue_position);
       addRecentLog({
         channel: 'API',
@@ -334,6 +405,30 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       showToast(`False positive recorded · retrain queue #${res.queue_position}`, 'success');
     } catch (err: any) {
       showToast(`Failed to submit feedback: ${err?.message ?? 'API error'}`, 'warning');
+    }
+  };
+
+  const escalateAccount = async (displayId: string, notes?: string) => {
+    const numeric = parseNumericId(displayId);
+    if (numeric == null) return;
+    try {
+      const res = await api.submitFeedback({
+        account_id: numeric,
+        verdict: 'escalate',
+        notes: notes ?? 'Escalated to Nodal Officer for review.',
+        analyst_id: analystId,
+      });
+      setPendingRetrainCount(res.queue_position);
+      addRecentLog({
+        channel: 'NODAL',
+        id: displayId.slice(8, 24),
+        time: new Date().toLocaleTimeString('en-IN', { hour12: false }) + ' UTC',
+        status: `Escalated to Nodal Officer · queue #${res.queue_position}`,
+        color: 'text-amber-700 bg-amber-50 border-amber-100',
+      });
+      showToast(`Case escalated to Nodal Officer · queue #${res.queue_position}`, 'success');
+    } catch (err: any) {
+      showToast(`Failed to escalate: ${err?.message ?? 'API error'}`, 'warning');
     }
   };
 
@@ -361,6 +456,27 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   };
 
+  // ---- Bulk mutations ----
+  const bulkMarkFalsePositive = async (displayIds: string[]) => {
+    showToast(`Processing ${displayIds.length} false positive submissions…`, 'success');
+    const results = await Promise.allSettled(
+      displayIds.map((id) => markAsFalsePositive(id))
+    );
+    const succeeded = results.filter((r) => r.status === 'fulfilled').length;
+    clearSelection();
+    showToast(`${succeeded}/${displayIds.length} accounts marked as false positive.`, 'success');
+  };
+
+  const bulkEscalate = async (displayIds: string[]) => {
+    showToast(`Escalating ${displayIds.length} accounts to Nodal Officer…`, 'success');
+    const results = await Promise.allSettled(
+      displayIds.map((id) => escalateAccount(id, 'Bulk escalation by analyst.'))
+    );
+    const succeeded = results.filter((r) => r.status === 'fulfilled').length;
+    clearSelection();
+    showToast(`${succeeded}/${displayIds.length} accounts escalated.`, 'success');
+  };
+
   return (
     <AlertContext.Provider
       value={{
@@ -371,8 +487,18 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         trueMulesCount,
         streamEvents,
         eventsPerSecond,
+
         markAsFalsePositive,
         executeSystemBlock,
+        escalateAccount,
+        bulkMarkFalsePositive,
+        bulkEscalate,
+
+        selectedAlertIds,
+        toggleAlertSelection,
+        selectAllAlerts,
+        clearSelection,
+
         currentView,
         selectedAlertId,
         setCurrentView,
@@ -382,6 +508,11 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         modelVersion,
         apiError,
         refreshAlerts,
+
+        analystId,
+        setAnalystId,
+        isDarkMode,
+        toggleDarkMode,
 
         isSettingsOpen,
         setIsSettingsOpen,

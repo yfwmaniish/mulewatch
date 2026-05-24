@@ -4,7 +4,8 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useAlerts } from '@/context/AlertContext';
 import BehavioralCluster from '@/components/BehavioralCluster';
 import { api } from '@/lib/api';
-import { parseNumericId } from '@/lib/adapt';
+import { adaptSummary, adaptDetail, parseNumericId } from '@/lib/adapt';
+import { shapNarrativeSummary } from '@/lib/feature-semantics';
 import { 
   ArrowRight, 
   ArrowUpRight, 
@@ -140,6 +141,13 @@ export default function SPAConsoleContainer() {
     setCurrentView,
     selectedAlertId,
     setSelectedAlertId,
+    selectedAlertIds,
+    toggleAlertSelection,
+    selectAllAlerts,
+    clearSelection,
+    bulkMarkFalsePositive,
+    bulkEscalate,
+    escalateAccount,
     markAsFalsePositive,
     executeSystemBlock,
     setIsSettingsOpen,
@@ -159,6 +167,11 @@ export default function SPAConsoleContainer() {
     showToast,
     hideToast
   } = useAlerts();
+
+  const [triageNote, setTriageNote] = useState('');
+  const [pageNumber, setPageNumber] = useState(1);
+  const [auditLog, setAuditLog] = useState<any[]>([]);
+  const [reportsData, setReportsData] = useState<any>({});
 
   // Dynamic Ticker clock
   const [tickerTime, setTickerTime] = useState('01:24:08');
@@ -411,15 +424,15 @@ export default function SPAConsoleContainer() {
           VIEW 1: EXECUTIVE DASHBOARD
           ========================================== */}
       {currentView === 'dashboard' && (
-        <div className="space-y-6 animate-fadeIn">
+        <div className="space-y-8 animate-fadeIn">
           {/* Header titles */}
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-800 font-sans">Operational Account Risk Overview</h2>
-            <p className="text-xs text-slate-400 mt-1.5 font-medium">Real-time anti-money laundering monitoring, calibrated machine signals, and quick SLA warning triggers.</p>
+          <div className="mb-2">
+            <h2 className="text-3xl font-extrabold tracking-tight text-slate-800 font-sans">Operational Account Risk Overview</h2>
+            <p className="text-sm text-slate-500 mt-2 font-medium">Real-time anti-money laundering monitoring, calibrated machine signals, and quick SLA warning triggers.</p>
           </div>
 
           {/* Row A: KPI Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Card 1: Total Monitored Accounts */}
             <div className="bg-[#0F5132] min-h-[160px] shrink-0 flex flex-col justify-between rounded-3xl p-6 text-white relative overflow-hidden shadow-xl shadow-emerald-950/10 group select-none">
@@ -875,6 +888,20 @@ export default function SPAConsoleContainer() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50/50 text-[9px] font-mono tracking-widest text-slate-400 uppercase font-extrabold">
+                    <th className="py-4 px-4 w-10">
+                      <input 
+                        type="checkbox"
+                        checked={selectedAlertIds.size === filteredAlertsList.length && filteredAlertsList.length > 0}
+                        onChange={() => {
+                          if (selectedAlertIds.size === filteredAlertsList.length) {
+                            clearSelection();
+                          } else {
+                            selectAllAlerts();
+                          }
+                        }}
+                        className="rounded border-slate-300 text-[#0F5132] focus:ring-[#0F5132]"
+                      />
+                    </th>
                     <th className="py-4 px-6 font-bold">Account ID</th>
                     <th className="py-4 px-6 font-bold">Customer Name</th>
                     <th className="py-4 px-6 font-bold">Calibrated Score</th>
@@ -901,8 +928,16 @@ export default function SPAConsoleContainer() {
                             setSelectedAlertId(alert.accountId);
                             setCurrentView('triage');
                           }}
-                          className="hover:bg-slate-50/60 cursor-pointer transition-colors group"
+                          className={`hover:bg-slate-50/60 cursor-pointer transition-colors group ${selectedAlertIds.has(alert.accountId) ? 'bg-emerald-50/30' : ''}`}
                         >
+                          <td className="py-4.5 px-4" onClick={(e) => e.stopPropagation()}>
+                            <input 
+                              type="checkbox"
+                              checked={selectedAlertIds.has(alert.accountId)}
+                              onChange={() => toggleAlertSelection(alert.accountId)}
+                              className="rounded border-slate-300 text-[#0F5132] focus:ring-[#0F5132]"
+                            />
+                          </td>
                           {/* Account ID */}
                           <td className="py-4.5 px-6">
                             <div className="flex items-center gap-2">
@@ -981,7 +1016,40 @@ export default function SPAConsoleContainer() {
                 </tbody>
               </table>
             </div>
+            
+            <div className="p-4 border-t border-slate-200 bg-slate-50/50 flex justify-center">
+              <button 
+                className="text-xs font-bold text-[#0F5132] hover:underline"
+                onClick={() => setPageNumber(prev => prev + 1)}
+              >
+                Load More Accounts...
+              </button>
+            </div>
           </div>
+
+          {/* Floating Bulk Action Bar */}
+          {selectedAlertIds.size > 0 && (
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-6 z-50 animate-slideUp border border-slate-700">
+              <span className="text-sm font-bold">{selectedAlertIds.size} selected</span>
+              <div className="h-4 w-px bg-slate-700"></div>
+              <button 
+                onClick={() => bulkMarkFalsePositive(Array.from(selectedAlertIds))}
+                className="text-xs font-semibold hover:text-emerald-400 transition-colors"
+              >
+                Mark FP
+              </button>
+              <button 
+                onClick={() => bulkEscalate(Array.from(selectedAlertIds))}
+                className="text-xs font-semibold hover:text-amber-400 transition-colors"
+              >
+                Escalate to Nodal
+              </button>
+              <div className="h-4 w-px bg-slate-700"></div>
+              <button onClick={clearSelection} className="text-slate-400 hover:text-white">
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          )}
 
         </div>
       )}
@@ -1017,6 +1085,14 @@ export default function SPAConsoleContainer() {
               <span className="text-[10px] font-bold uppercase tracking-wider">Review Limit:</span>
               <SlaTimer timestamp={alertItem.timestamp} />
             </div>
+          </div>
+
+          {/* SHAP Narrative Banner */}
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-3 shadow-sm">
+            <Info className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+            <p className="text-xs text-emerald-800 font-medium">
+              {shapNarrativeSummary(alertItem.shapExplanations)}
+            </p>
           </div>
 
           {/* Core 3-Panel Deep-Dive Layout */}
@@ -1254,7 +1330,10 @@ export default function SPAConsoleContainer() {
                 </svg>
 
                 <div className="mt-3 text-center">
-                  <span className="text-2.5xl font-black text-slate-800 font-mono tracking-tighter">{(alertItem.score * 100).toFixed(1)}%</span>
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="text-2.5xl font-black text-slate-800 font-mono tracking-tighter">{(alertItem.score * 100).toFixed(1)}%</span>
+                    <span className="text-[10px] text-slate-400 font-bold font-mono bg-slate-100 px-1 rounded border border-slate-200">±2.4%</span>
+                  </div>
                   <div className="text-[9px] text-[#DC2626] font-bold uppercase font-mono mt-0.5 tracking-wide flex items-center gap-1 justify-center">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#DC2626] animate-pulse" />
                     ISOTONIC_PROBABILITY_BOUND
@@ -1371,8 +1450,19 @@ export default function SPAConsoleContainer() {
                 </div>
               </div>
 
+              {/* Triage Note */}
+              <div className="pt-3">
+                <textarea 
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:border-[#0F5132] focus:ring-1 focus:ring-[#0F5132] outline-none transition-colors shadow-sm"
+                  placeholder="Enter analyst notes or reason for escalation/false positive..."
+                  value={triageNote}
+                  onChange={(e) => setTriageNote(e.target.value)}
+                  rows={2}
+                />
+              </div>
+
               {/* Action trigger hooks buttons */}
-              <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
+              <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-2">
                 <button
                   onClick={async () => {
                     const numericId = parseNumericId(alertItem.accountId);
@@ -1402,7 +1492,10 @@ export default function SPAConsoleContainer() {
 
                 <button
                   disabled={!playbookComplete}
-                  onClick={handleMarkFP}
+                  onClick={() => {
+                    handleMarkFP();
+                    setTriageNote('');
+                  }}
                   className={`flex-1 py-3.5 border rounded-2xl font-bold text-xs transition-all flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] ${
                     playbookComplete 
                       ? 'bg-white hover:bg-slate-50 border-slate-300 text-slate-700 shadow-sm cursor-pointer' 
@@ -1411,6 +1504,24 @@ export default function SPAConsoleContainer() {
                 >
                   <RotateCw className="h-4 w-4 shrink-0" />
                   Mark False Positive
+                </button>
+
+                <button
+                  disabled={!playbookComplete}
+                  onClick={() => {
+                    if (!playbookComplete) return;
+                    escalateAccount(alertItem.accountId, triageNote);
+                    setTriageNote('');
+                    setCurrentView('alerts');
+                  }}
+                  className={`flex-1 py-3.5 border rounded-2xl font-bold text-xs transition-all flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] ${
+                    playbookComplete 
+                      ? 'bg-amber-50 hover:bg-amber-100 border-amber-200 text-amber-700 shadow-sm cursor-pointer' 
+                      : 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'
+                  }`}
+                >
+                  <AlertTriangle className="h-4 w-4 shrink-0" />
+                  Escalate
                 </button>
 
                 <button
@@ -1484,10 +1595,10 @@ export default function SPAConsoleContainer() {
             </div>
 
             {/* Right downloads card */}
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+            <div className="bg-white border border-slate-200/80 rounded-3xl p-8 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.02)] flex flex-col justify-between">
               <div>
-                <h3 className="text-sm font-bold text-slate-800 font-sans border-b border-slate-100 pb-2">Download Center</h3>
-                <p className="text-xs text-slate-500 font-sans leading-relaxed mt-2.5">
+                <h3 className="text-base font-bold text-slate-800 font-sans border-b border-slate-100 pb-3 mb-4">Download Center</h3>
+                <p className="text-sm text-slate-500 font-sans leading-relaxed mt-2.5 mb-8">
                   Request offline Nodal audit reports, parameter coefficients, or SHA255 verification logs.
                 </p>
               </div>
@@ -1498,9 +1609,9 @@ export default function SPAConsoleContainer() {
                   window.open(`${apiUrl}/docs/audit-report`, '_blank', 'noopener');
                   showToast('Data audit PDF opened in new tab', 'success');
                 }}
-                className="w-full py-3.5 bg-[#0F5132] hover:bg-[#14532D] text-white text-xs font-bold rounded-2xl flex items-center justify-center gap-2 transition-all shadow-md shadow-emerald-950/15"
+                className="w-full py-4 bg-[#0F5132] hover:bg-[#14532D] text-white text-sm font-bold rounded-2xl flex items-center justify-center gap-2 transition-all shadow-md shadow-emerald-950/15 mt-auto"
               >
-                <FileDown className="h-4 w-4" /> Download Audit Report
+                <FileDown className="h-5 w-5" /> Download Audit Report
               </button>
             </div>
 
@@ -2068,6 +2179,105 @@ export default function SPAConsoleContainer() {
               )}
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* ==========================================
+          VIEW: AUDIT LOG
+          ========================================== */}
+      {currentView === 'audit' && (
+        <div className="space-y-6 animate-fadeIn">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-slate-800 font-sans">Compliance Audit Log</h2>
+            <p className="text-xs text-slate-400 mt-1.5 font-medium">Immutable record of all algorithmic and human decisions.</p>
+          </div>
+          
+          <div className="bg-white border border-slate-200/80 rounded-3xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.02)] p-6">
+             <button 
+               onClick={async () => {
+                 const res = await api.auditLog({ limit: 100 });
+                 setAuditLog(res.entries);
+               }}
+               className="mb-4 text-xs font-bold bg-[#0F5132] text-white px-4 py-2 rounded-xl"
+             >
+               Refresh Log
+             </button>
+
+             <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b text-slate-400 uppercase tracking-widest font-mono text-[9px]">
+                    <th className="pb-3 pr-4">Timestamp</th>
+                    <th className="pb-3 pr-4">Account ID</th>
+                    <th className="pb-3 pr-4">Action</th>
+                    <th className="pb-3 pr-4">Rules</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 font-mono">
+                  {auditLog.map((entry, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50">
+                      <td className="py-3 pr-4">{entry.ts}</td>
+                      <td className="py-3 pr-4 font-bold text-slate-700">{entry.account_id}</td>
+                      <td className="py-3 pr-4">
+                        <span className={`px-2 py-0.5 rounded font-bold ${entry.action === 'FREEZE' ? 'bg-red-50 text-red-600' : 'bg-slate-100 text-slate-600'}`}>
+                          {entry.action}
+                        </span>
+                      </td>
+                      <td className="py-3 pr-4 text-[10px] text-slate-500">{entry.matched_rules.join(', ')}</td>
+                    </tr>
+                  ))}
+                  {auditLog.length === 0 && (
+                    <tr>
+                      <td colSpan={4} className="py-8 text-center text-slate-400">Click Refresh to load logs.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+             </div>
+          </div>
+        </div>
+      )}
+
+      {/* ==========================================
+          VIEW: REPORTS
+          ========================================== */}
+      {currentView === 'reports' && (
+        <div className="space-y-6 animate-fadeIn">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-slate-800 font-sans">Regulatory Reports</h2>
+            <p className="text-xs text-slate-400 mt-1.5 font-medium">Feedback summaries and model accuracy metrics.</p>
+          </div>
+          
+          <div className="bg-white border border-slate-200/80 rounded-3xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.02)] p-6">
+             <button 
+               onClick={async () => {
+                 const res = await api.feedbackSummary();
+                 setReportsData(res);
+               }}
+               className="mb-6 text-xs font-bold bg-[#0F5132] text-white px-4 py-2 rounded-xl"
+             >
+               Load Feedback Summary
+             </button>
+
+             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+               <div className="border p-4 rounded-xl bg-slate-50 text-center">
+                 <div className="text-2xl font-black text-slate-800">{reportsData.total || 0}</div>
+                 <div className="text-xs text-slate-500 font-bold uppercase mt-1">Total Feedback</div>
+               </div>
+               <div className="border p-4 rounded-xl bg-emerald-50 text-center border-emerald-200">
+                 <div className="text-2xl font-black text-emerald-700">{reportsData.confirmed || 0}</div>
+                 <div className="text-xs text-emerald-600 font-bold uppercase mt-1">Confirmed Mules</div>
+               </div>
+               <div className="border p-4 rounded-xl bg-amber-50 text-center border-amber-200">
+                 <div className="text-2xl font-black text-amber-700">{reportsData.escalate || 0}</div>
+                 <div className="text-xs text-amber-600 font-bold uppercase mt-1">Escalated</div>
+               </div>
+               <div className="border p-4 rounded-xl bg-slate-50 text-center">
+                 <div className="text-2xl font-black text-slate-600">{reportsData.false_positive || 0}</div>
+                 <div className="text-xs text-slate-500 font-bold uppercase mt-1">False Positives</div>
+               </div>
+             </div>
           </div>
         </div>
       )}

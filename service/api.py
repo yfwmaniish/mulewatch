@@ -227,7 +227,14 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
+        "http://localhost:3002",
+        "http://127.0.0.1:3002",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -622,3 +629,129 @@ def submit_i4c_ticket(req: I4CTicketRequest) -> I4CTicketResponse:
         hard_block_active=True,
         written_at=datetime.now(timezone.utc).isoformat(),
     )
+
+
+# --------------------------------------------------------------------------- NEW ENDPOINTS
+
+
+@app.get("/audit-log")
+def get_audit_log(
+    limit: int = Query(100, ge=1, le=1000),
+    offset: int = Query(0, ge=0),
+    band: Optional[str] = Query(None, description="Filter by band: LOW, MEDIUM, HIGH, FREEZE"),
+    since: Optional[str] = Query(None, description="ISO timestamp — only return entries after this time"),
+) -> dict:
+    """Paginated reader for the decisions.jsonl audit log."""
+    log_path = LOGS / "decisions.jsonl"
+    if not log_path.exists():
+        return {"total": 0, "offset": offset, "limit": limit, "entries": []}
+
+    entries = []
+    with log_path.open(encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entry = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            # Apply filters
+            if band and entry.get("band") != band:
+                continue
+            if since:
+                try:
+                    if entry.get("ts", "") < since:
+                        continue
+                except Exception:
+                    pass
+            entries.append(entry)
+
+    # Most recent first
+    entries.reverse()
+    total = len(entries)
+    page_entries = entries[offset: offset + limit]
+    return {"total": total, "offset": offset, "limit": limit, "entries": page_entries}
+
+
+@app.get("/accounts/search")
+def search_accounts(
+    q: str = Query(..., description="Numeric account_id or display ID prefix (e.g. MULE_AC_9071)"),
+    limit: int = Query(20, ge=1, le=100),
+) -> dict:
+    """Search accounts by numeric id or MULE_AC display id prefix."""
+    import re
+    results = []
+
+    # Try to parse as numeric id first
+    try:
+        numeric_id = int(q.strip())
+        if numeric_id in STATE.cache:
+            cached = STATE.cache[numeric_id]
+            rules = matched_rules_for(numeric_id)
+            band, action = decide(cached["score"], rules)
+            # Reconstruct display_id using same FNV-1a hash as the UI
+            h = 2166136261
+            for c in f"acct-{numeric_id}".encode():
+                h ^= c
+                h = (h * 16777619) & 0xFFFFFFFF
+            display_id = f"MULE_AC_{numeric_id}_{f'{h:08X}'[:4]}"
+            results.append({
+                "account_id": numeric_id,
+                "display_id": display_id,
+                "score": cached["score"],
+                "band": band,
+                "action": action,
+                "matched_rules": rules,
+            })
+        return {"query": q, "total": len(results), "results": results}
+    except ValueError:
+        pass
+
+    # Search by display id prefix
+    q_upper = q.strip().upper()
+    m = re.match(r"MULE_AC_(\d+)", q_upper)
+    if m:
+        numeric_id = int(m.group(1))
+        if numeric_id in STATE.cache:
+            cached = STATE.cache[numeric_id]
+            rules = matched_rules_for(numeric_id)
+            band, action = decide(cached["score"], rules)
+            h = 2166136261
+            for c in f"acct-{numeric_id}".encode():
+                h ^= c
+                h = (h * 16777619) & 0xFFFFFFFF
+            display_id = f"MULE_AC_{numeric_id}_{f'{h:08X}'[:4]}"
+            results.append({
+                "account_id": numeric_id,
+                "display_id": display_id,
+                "score": cached["score"],
+                "band": band,
+                "action": action,
+                "matched_rules": rules,
+            })
+
+    return {"query": q, "total": len(results), "results": results}
+
+
+@app.get("/feedback/summary")
+def feedback_summary() -> dict:
+    """Counts of feedback verdicts: confirmed, false_positive, escalate."""
+    path = FEEDBACK_DIR / "queue.jsonl"
+    counts: dict[str, int] = {"confirmed": 0, "false_positive": 0, "escalate": 0, "total": 0}
+    if not path.exists():
+        return counts
+    with path.open(encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entry = json.loads(line)
+                verdict = entry.get("verdict", "")
+                if verdict in counts:
+                    counts[verdict] += 1
+                counts["total"] += 1
+            except json.JSONDecodeError:
+                continue
+    return counts

@@ -101,3 +101,44 @@ export interface ApiGraph {
   nodes: ApiGraphNode[];
   edges: ApiGraphEdge[];
 }
+
+// --- New endpoint types ---
+
+export interface ApiAuditEntry {
+  ts: string;
+  account_id: number;
+  score: number;
+  band: ApiBand;
+  action: ApiAction;
+  matched_rules: string[];
+  model_version: string;
+}
+
+export interface ApiAuditLog {
+  total: number;
+  offset: number;
+  limit: number;
+  entries: ApiAuditEntry[];
+}
+
+export interface ApiSearchResultItem {
+  account_id: number;
+  display_id: string;
+  score: number;
+  band: ApiBand;
+  action: ApiAction;
+  matched_rules: string[];
+}
+
+export interface ApiSearchResult {
+  query: string;
+  total: number;
+  results: ApiSearchResultItem[];
+}
+
+export interface ApiFeedbackSummary {
+  confirmed: number;
+  false_positive: number;
+  escalate: number;
+  total: number;
+}

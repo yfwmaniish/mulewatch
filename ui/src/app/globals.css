@@ -4,19 +4,99 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================
+   DESIGN TOKENS — Light Mode
+   =========================== */
 :root {
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Canvas */
+  --bg-canvas: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #FFFFFF;
+  --bg-hover: rgba(0,0,0,0.025);
+  --bg-input: #F8FAFC;
+
+  /* Text */
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-inverse: #FFFFFF;
+
+  /* Borders */
+  --border-default: rgba(226, 232, 240, 0.8);
+  --border-subtle: rgba(226, 232, 240, 0.5);
+
+  /* Brand */
+  --brand-green: #0F5132;
+  --brand-green-light: #419E73;
+  --brand-green-muted: rgba(15, 81, 50, 0.08);
+
+  /* Semantic */
+  --danger: #DC2626;
+  --danger-bg: #FEF2F2;
+  --warning: #D97706;
+  --warning-bg: #FFFBEB;
+  --success: #059669;
+  --success-bg: #ECFDF5;
+
+  /* Scrollbar */
+  --scrollbar-track: #F1F5F9;
+  --scrollbar-thumb: #CBD5E1;
+  --scrollbar-thumb-hover: #94A3B8;
 }
 
+/* ===========================
+   DARK MODE TOKENS
+   =========================== */
+.dark {
+  --bg-canvas: #0B1120;
+  --bg-card: #111827;
+  --bg-sidebar: #0F172A;
+  --bg-hover: rgba(255,255,255,0.04);
+  --bg-input: #1E293B;
+
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverse: #0F172A;
+
+  --border-default: rgba(51, 65, 85, 0.8);
+  --border-subtle: rgba(51, 65, 85, 0.5);
+
+  --brand-green: #34D399;
+  --brand-green-light: #6EE7B7;
+  --brand-green-muted: rgba(52, 211, 153, 0.1);
+
+  --danger: #F87171;
+  --danger-bg: rgba(248, 113, 113, 0.1);
+  --warning: #FBBF24;
+  --warning-bg: rgba(251, 191, 36, 0.1);
+  --success: #34D399;
+  --success-bg: rgba(52, 211, 153, 0.1);
+
+  --scrollbar-track: #1E293B;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+}
+
+/* ===========================
+   BASE STYLES
+   =========================== */
 @layer base {
   body {
-    background-color: #F8FAFC; /* Donezo Canvas Background (#F8FAFC) */
-    color: #0F172A;            /* Slate-900 */
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 }
+
+/* ===========================
+   UTILITY CLASSES
+   =========================== */
 
 /* Beautiful custom diagonal hatched patterns mimicking Donezo graph elements */
 .hatched-pattern {
@@ -26,6 +106,16 @@
     #E2E8F0 6px,
     #FFFFFF 6px,
     #FFFFFF 12px
+  );
+}
+
+.dark .hatched-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #1E293B,
+    #1E293B 6px,
+    #111827 6px,
+    #111827 12px
   );
 }
 
@@ -47,27 +137,45 @@
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+.dark .glassmorphism {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Card styles */
+.mw-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-default);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
 /* Rounded corners utility */
 .rounded-3xl {
   border-radius: 24px !important;
 }
 
-/* Scrollbar customizations */
+/* ===========================
+   SCROLLBAR CUSTOMIZATIONS
+   =========================== */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: var(--scrollbar-thumb-hover);
 }
 
+/* ===========================
+   ANIMATIONS
+   =========================== */
 @keyframes pulse-ring {
   0% {
     transform: scale(0.95);
@@ -85,4 +193,33 @@
 
 .pulse-red-ring {
   animation: pulse-ring 2s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.25s ease forwards;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-hover) 50%, var(--bg-card) 75%);
+  background-size: 200% auto;
+  animation: shimmer 1.5s infinite;
 }
